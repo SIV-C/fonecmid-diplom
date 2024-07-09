@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<planner:PlannerSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:planner="http://g5.1c.ru/v8/dt/planner/model">
+  <alignItemBoundariesByTimeScale>true</alignItemBoundariesByTimeScale>
+  <showWrappedHeaders>true</showWrappedHeaders>
+  <showWrappedTimeScaleHeaders>true</showWrappedTimeScaleHeaders>
+  <showCurrentDate>true</showCurrentDate>
+  <wrappedTimeScaleHeaderFormat>
+    <key>#</key>
+    <value>DLF=&quot;DD&quot;</value>
+  </wrappedTimeScaleHeaderFormat>
+  <wrappedTimeScaleHeaderFormat>
+    <key>ru</key>
+    <value>DLF=&quot;DD&quot;</value>
+  </wrappedTimeScaleHeaderFormat>
+  <periodicVariantRepetition>1</periodicVariantRepetition>
+  <periodicVariantUnit>Day</periodicVariantUnit>
+  <border xsi:type="core:BorderDef">
+    <style>Single</style>
+    <width>1</width>
+  </border>
+  <font xsi:type="core:AutoFont"/>
+  <beginOfRepresentationPeriod>0001-01-01T00:00:00</beginOfRepresentationPeriod>
+  <endOfRepresentationPeriod>0001-01-01T00:00:00</endOfRepresentationPeriod>
+  <timeScale/>
+</planner:PlannerSettings>

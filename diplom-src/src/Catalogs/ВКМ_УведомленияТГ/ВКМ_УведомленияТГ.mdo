@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="cd028c77-f4e7-4052-b219-2f60b8967b4b">
+  <producedTypes>
+    <objectType typeId="fd469361-d8df-4910-827b-a0235388558f" valueTypeId="c26ed436-de5a-4d6c-9ed7-0e7f9614cfa7"/>
+    <refType typeId="cf0c4a21-6976-4438-97d9-c58e25dcedf8" valueTypeId="d9ee80f2-6261-4b14-96db-642e51cf5f01"/>
+    <selectionType typeId="057738a9-8dad-4b83-ab04-03b013eb495b" valueTypeId="301682ea-0e89-43b2-ad0d-8300f42f295f"/>
+    <listType typeId="bd426cce-f850-4b95-9c4c-2806d78be8e8" valueTypeId="9e124869-d102-4359-8a70-fb5541758492"/>
+    <managerType typeId="9f98a0f2-29a7-4883-a203-272c4d64fc84" valueTypeId="7f1324c2-49f9-486e-89c1-1416b3133fb6"/>
+  </producedTypes>
+  <name>ВКМ_УведомленияТГ</name>
+  <synonym>
+    <key>ru</key>
+    <value>Уведомления (ТГ)</value>
+  </synonym>
+  <useStandardCommands>true</useStandardCommands>
+  <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
+  <createOnInput>Use</createOnInput>
+  <dataLockControlMode>Managed</dataLockControlMode>
+  <fullTextSearch>Use</fullTextSearch>
+  <levelCount>2</levelCount>
+  <foldersOnTop>true</foldersOnTop>
+  <codeType>String</codeType>
+  <codeAllowedLength>Variable</codeAllowedLength>
+  <defaultPresentation>AsDescription</defaultPresentation>
+  <editType>InDialog</editType>
+  <choiceMode>BothWays</choiceMode>
+  <attributes uuid="e4ccd43f-fa32-4b79-af35-ee4a7113d5d7">
+    <name>ТекстСообщения</name>
+    <synonym>
+      <key>ru</key>
+      <value>Текст сообщения</value>
+    </synonym>
+    <type>
+      <types>String</types>
+      <stringQualifiers/>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+  </attributes>
+</mdclass:Catalog>
