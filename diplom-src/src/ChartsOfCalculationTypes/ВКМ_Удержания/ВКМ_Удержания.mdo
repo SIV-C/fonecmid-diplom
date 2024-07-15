@@ -13,14 +13,14 @@
     <leadingCalculationTypesType typeId="c5bac91b-6059-435f-9a90-d59222d070cd" valueTypeId="8b25717a-4af3-4a2a-8e8f-3a24053bf65d"/>
     <leadingCalculationTypesRowType typeId="472ef96f-5bcb-454a-91c9-f83f2c08dc3d" valueTypeId="f1e5a65b-9776-4dc2-af9c-2501176405ff"/>
   </producedTypes>
-  <name>Удержания</name>
+  <name>ВКМ_Удержания</name>
   <synonym>
     <key>ru</key>
     <value>Удержания</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
-  <inputByString>ChartOfCalculationTypes.Удержания.StandardAttribute.Code</inputByString>
-  <inputByString>ChartOfCalculationTypes.Удержания.StandardAttribute.Description</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_Удержания.StandardAttribute.Code</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_Удержания.StandardAttribute.Description</inputByString>
   <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
   <createOnInput>DontUse</createOnInput>
   <dataLockControlMode>Managed</dataLockControlMode>
@@ -33,8 +33,8 @@
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
   <dependenceOnCalculationTypes>OnActionPeriod</dependenceOnCalculationTypes>
-  <baseCalculationTypes>ChartOfCalculationTypes.ОсновныеНачисления</baseCalculationTypes>
-  <baseCalculationTypes>ChartOfCalculationTypes.ДополнительныеНачисления</baseCalculationTypes>
+  <baseCalculationTypes>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления</baseCalculationTypes>
+  <baseCalculationTypes>ChartOfCalculationTypes.ВКМ_ДополнительныеНачисления</baseCalculationTypes>
   <actionPeriodUse>true</actionPeriodUse>
   <predefined>
     <items id="781adcfd-2030-4e53-80fa-3ac92b075fab">
@@ -44,10 +44,10 @@
         <value>01</value>
       </code>
       <actionPeriodIsBase>true</actionPeriodIsBase>
-      <base>ChartOfCalculationTypes.ОсновныеНачисления.Оклад</base>
-      <base>ChartOfCalculationTypes.ДополнительныеНачисления.ПроцентЗаВыполненыеРаботы</base>
-      <base>ChartOfCalculationTypes.ДополнительныеНачисления.ФиксированнаяПремия</base>
-      <base>ChartOfCalculationTypes.ОсновныеНачисления.Отпуск</base>
+      <base>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Оклад</base>
+      <base>ChartOfCalculationTypes.ВКМ_ДополнительныеНачисления.ПроцентЗаВыполненыеРаботы</base>
+      <base>ChartOfCalculationTypes.ВКМ_ДополнительныеНачисления.ФиксированнаяПремия</base>
+      <base>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Отпуск</base>
     </items>
   </predefined>
 </mdclass:ChartOfCalculationTypes>

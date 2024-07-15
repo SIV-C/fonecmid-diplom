@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Сотрудник</dataPath>
+			<field>Сотрудник</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сотрудник</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоДнейПоПлану</dataPath>
+			<field>КоличествоДнейПоПлану</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество дней по плану</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактическиВОтпуске</dataPath>
+			<field>ФактическиВОтпуске</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Фактически в отпуске</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ВКМ_ОсновныеНачисления.Сотрудник КАК Сотрудник,
+	СУММА(РАЗНОСТЬДАТ(ВКМ_ОсновныеНачисления.ПериодДействияНачало, ВКМ_ОсновныеНачисления.ПериодДействияКонец, ДЕНЬ)) КАК ФактическиВОтпуске
+ПОМЕСТИТЬ ВТ_ФактическийОтпуск
+ИЗ
+	РегистрРасчета.ВКМ_ОсновныеНачисления КАК ВКМ_ОсновныеНачисления
+ГДЕ
+	ВКМ_ОсновныеНачисления.ПериодДействияНачало &gt;= &amp;ПериодДействияНачало
+	И ВКМ_ОсновныеНачисления.ПериодДействияКонец &lt;= &amp;ПериодДействияКонец
+	И ВКМ_ОсновныеНачисления.ВидРасчета = ЗНАЧЕНИЕ(ПланВидовРасчета.ВКМ_ОсновныеНачисления.Отпуск)
+
+СГРУППИРОВАТЬ ПО
+	ВКМ_ОсновныеНачисления.Сотрудник
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВКМ_ГрафикиОтпусков.Сотрудник КАК Сотрудник,
+	СУММА(РАЗНОСТЬДАТ(ВКМ_ГрафикиОтпусков.ДатаНачала, ВКМ_ГрафикиОтпусков.ДатаОкончания, ДЕНЬ)) КАК КоличествоДнейПоПлану
+ПОМЕСТИТЬ ВТ_ПлановыйОтпуск
+ИЗ
+	РегистрСведений.ВКМ_ГрафикОтпусков КАК ВКМ_ГрафикиОтпусков
+
+СГРУППИРОВАТЬ ПО
+	ВКМ_ГрафикиОтпусков.Сотрудник
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВКМ_ФизическиеЛица.Ссылка КАК Сотрудник,
+	ЕСТЬNULL(ВТ_ПлановыйОтпуск.КоличествоДнейПоПлану, 0) КАК КоличествоДнейПоПлану,
+	ЕСТЬNULL(ВТ_ФактическийОтпуск.ФактическиВОтпуске, 0) КАК ФактическиВОтпуске
+ИЗ
+	Справочник.ВКМ_ФизическиеЛица КАК ВКМ_ФизическиеЛица
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_ФактическийОтпуск КАК ВТ_ФактическийОтпуск
+		ПО ВКМ_ФизическиеЛица.Ссылка = ВТ_ФактическийОтпуск.Сотрудник
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_ПлановыйОтпуск КАК ВТ_ПлановыйОтпуск
+		ПО ВКМ_ФизическиеЛица.Ссылка = ВТ_ПлановыйОтпуск.Сотрудник</query>
+	</dataSet>
+	<totalField>
+		<dataPath>КоличествоДнейПоПлану</dataPath>
+		<expression>Сумма(КоличествоДнейПоПлану)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ФактическиВОтпуске</dataPath>
+		<expression>Сумма(ФактическиВОтпуске)</expression>
+	</totalField>
+	<parameter>
+		<name>ПериодДействияНачало</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период действия начало</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>ПериодДействияКонец</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период действия конец</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>ВидРасчета</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Вид расчета</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCalculationTypesRef.ВКМ_ОсновныеНачисления</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовРасчета.ВКМ_ОсновныеНачисления.Отпуск</value>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>Период</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>v8:StandardPeriod</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>false</useRestriction>
+	</parameter>
+	<parameter>
+		<name>ПериодНачало</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период начало</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>Date</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<expression>&amp;Период.ДатаНачала</expression>
+	</parameter>
+	<parameter>
+		<name>ПериодОкончание</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ПериодНачало1</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>Date</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<expression>&amp;Период.ДатаОкончания</expression>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Период</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+					<dcsset:userSettingID>7279e6af-6a2e-4d25-9fc8-a471a1e5bd93</dcsset:userSettingID>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

@@ -13,14 +13,14 @@
     <leadingCalculationTypesType typeId="cdf8976c-ed0b-4c06-abfe-25308b38dd4b" valueTypeId="72520cf5-37d6-40d0-ad9a-044197f3bb14"/>
     <leadingCalculationTypesRowType typeId="d23ea57a-9f6b-410a-bb91-33e9035a590b" valueTypeId="0ba568ef-1021-4f5e-a7d8-513f2f822115"/>
   </producedTypes>
-  <name>ДополнительныеНачисления</name>
+  <name>ВКМ_ДополнительныеНачисления</name>
   <synonym>
     <key>ru</key>
     <value>Дополнительные начисления</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
-  <inputByString>ChartOfCalculationTypes.ДополнительныеНачисления.StandardAttribute.Code</inputByString>
-  <inputByString>ChartOfCalculationTypes.ДополнительныеНачисления.StandardAttribute.Description</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_ДополнительныеНачисления.StandardAttribute.Code</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_ДополнительныеНачисления.StandardAttribute.Description</inputByString>
   <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
   <createOnInput>DontUse</createOnInput>
   <dataLockControlMode>Managed</dataLockControlMode>
@@ -33,7 +33,7 @@
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
   <dependenceOnCalculationTypes>OnActionPeriod</dependenceOnCalculationTypes>
-  <baseCalculationTypes>ChartOfCalculationTypes.ОсновныеНачисления</baseCalculationTypes>
+  <baseCalculationTypes>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления</baseCalculationTypes>
   <predefined>
     <items id="94661540-f57e-4f4f-87b6-20ea83d6bfe9">
       <name>ПроцентЗаВыполненыеРаботы</name>
@@ -42,8 +42,8 @@
         <value>01</value>
       </code>
       <actionPeriodIsBase>true</actionPeriodIsBase>
-      <base>ChartOfCalculationTypes.ОсновныеНачисления.Оклад</base>
-      <leading>ChartOfCalculationTypes.ОсновныеНачисления.Оклад</leading>
+      <base>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Оклад</base>
+      <leading>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Оклад</leading>
     </items>
     <items id="0c6346a8-29b0-4d06-a15d-fe81243fca80">
       <name>ФиксированнаяПремия</name>

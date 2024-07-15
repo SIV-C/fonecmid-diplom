@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Role xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="c3c55d5d-dcb6-4282-9c96-a7244d30255a">
+  <name>ВКМ_ПодсистемаДобавленныеОбъекты</name>
+  <synonym>
+    <key>ru</key>
+    <value>Подсистема добавленные объекты</value>
+  </synonym>
+</mdclass:Role>

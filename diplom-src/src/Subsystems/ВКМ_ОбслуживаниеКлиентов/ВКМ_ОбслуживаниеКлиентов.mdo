@@ -12,4 +12,14 @@
   </picture>
   <content>Document.ВКМ_ОбслуживаниеКлиента</content>
   <content>DataProcessor.ВКМ_КалендарьСпециалистов</content>
+  <content>Document.ВКМ_НачислениеЗарплаты</content>
+  <content>Document.ВКМ_НачислениеФиксированнойПремии</content>
+  <content>Document.ВКМ_ВыплатаЗарплаты</content>
+  <content>Document.ВКМ_ГрафикОтпусков</content>
+  <content>DataProcessor.ВКМ_МассовоеСозданиеАктов</content>
+  <content>DataProcessor.ВКМ_ЗаполнениеГрафикаРаботы</content>
+  <content>Report.ВКМ_ВыработкаСпециалистов</content>
+  <content>Report.ВКМ_РасчетыССотрудниками</content>
+  <content>Report.ВКМ_РасходЗапланированныхОтпусков</content>
+  <content>Report.ВКМ_АнализВыставленныхАктов</content>
 </mdclass:Subsystem>

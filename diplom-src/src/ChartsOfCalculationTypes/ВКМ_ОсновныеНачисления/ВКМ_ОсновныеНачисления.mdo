@@ -13,14 +13,14 @@
     <leadingCalculationTypesType typeId="545da181-9e50-42c3-ac1b-ef5715a433a0" valueTypeId="f6f12b8f-8745-4f3a-93a3-e310b41d895f"/>
     <leadingCalculationTypesRowType typeId="84a3089c-3aa8-4f4b-b023-fa110da056b3" valueTypeId="81b2db26-623a-41bf-a294-0cb9bbf16252"/>
   </producedTypes>
-  <name>ОсновныеНачисления</name>
+  <name>ВКМ_ОсновныеНачисления</name>
   <synonym>
     <key>ru</key>
     <value>Основные начисления</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
-  <inputByString>ChartOfCalculationTypes.ОсновныеНачисления.StandardAttribute.Code</inputByString>
-  <inputByString>ChartOfCalculationTypes.ОсновныеНачисления.StandardAttribute.Description</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.StandardAttribute.Code</inputByString>
+  <inputByString>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.StandardAttribute.Description</inputByString>
   <fullTextSearchOnInputByString>DontUse</fullTextSearchOnInputByString>
   <createOnInput>DontUse</createOnInput>
   <dataLockControlMode>Managed</dataLockControlMode>
@@ -33,7 +33,7 @@
   <editType>InDialog</editType>
   <choiceMode>BothWays</choiceMode>
   <dependenceOnCalculationTypes>OnActionPeriod</dependenceOnCalculationTypes>
-  <baseCalculationTypes>ChartOfCalculationTypes.ОсновныеНачисления</baseCalculationTypes>
+  <baseCalculationTypes>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления</baseCalculationTypes>
   <actionPeriodUse>true</actionPeriodUse>
   <predefined>
     <items id="6a1892c0-fecf-41c5-a0d1-089c5eaaf8a6">
@@ -42,7 +42,7 @@
       <code xsi:type="core:StringValue">
         <value>01</value>
       </code>
-      <displaced>ChartOfCalculationTypes.ОсновныеНачисления.Отпуск</displaced>
+      <displaced>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Отпуск</displaced>
     </items>
     <items id="15164b5f-3945-460a-97a7-cd787b162068">
       <name>Отпуск</name>
@@ -50,8 +50,8 @@
       <code xsi:type="core:StringValue">
         <value>02</value>
       </code>
-      <base>ChartOfCalculationTypes.ОсновныеНачисления.Оклад</base>
-      <leading>ChartOfCalculationTypes.ОсновныеНачисления.Оклад</leading>
+      <base>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Оклад</base>
+      <leading>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления.Оклад</leading>
     </items>
   </predefined>
 </mdclass:ChartOfCalculationTypes>

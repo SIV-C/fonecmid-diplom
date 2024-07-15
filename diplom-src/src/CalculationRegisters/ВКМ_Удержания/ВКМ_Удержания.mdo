@@ -16,13 +16,14 @@
   </synonym>
   <useStandardCommands>true</useStandardCommands>
   <periodicity>Month</periodicity>
-  <chartOfCalculationTypes>ChartOfCalculationTypes.Удержания</chartOfCalculationTypes>
+  <basePeriod>true</basePeriod>
+  <chartOfCalculationTypes>ChartOfCalculationTypes.ВКМ_Удержания</chartOfCalculationTypes>
   <dataLockControlMode>Managed</dataLockControlMode>
   <resources uuid="9bfcecf1-5395-4bed-89ac-fe0509fe2689">
-    <name>Сумма</name>
+    <name>Результат</name>
     <synonym>
       <key>ru</key>
-      <value>Сумма</value>
+      <value>Результат</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -35,23 +36,6 @@
     <maxValue xsi:type="core:UndefinedValue"/>
     <fullTextSearch>Use</fullTextSearch>
   </resources>
-  <attributes uuid="7cd3ff52-316b-4ca9-aec9-6482667e07de">
-    <name>СуммаДляВычета</name>
-    <synonym>
-      <key>ru</key>
-      <value>Сумма для вычета</value>
-    </synonym>
-    <type>
-      <types>Number</types>
-      <numberQualifiers>
-        <precision>15</precision>
-        <scale>2</scale>
-      </numberQualifiers>
-    </type>
-    <minValue xsi:type="core:UndefinedValue"/>
-    <maxValue xsi:type="core:UndefinedValue"/>
-    <fullTextSearch>Use</fullTextSearch>
-  </attributes>
   <dimensions uuid="9e5055db-9226-407f-b1bb-895964bec090">
     <name>Сотрудник</name>
     <synonym>
@@ -59,7 +43,7 @@
       <value>Сотрудник</value>
     </synonym>
     <type>
-      <types>CatalogRef.Пользователи</types>
+      <types>CatalogRef.ВКМ_ФизическиеЛица</types>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>

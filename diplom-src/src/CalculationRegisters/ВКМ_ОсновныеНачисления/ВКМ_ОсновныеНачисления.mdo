@@ -18,16 +18,16 @@
   <periodicity>Month</periodicity>
   <actionPeriod>true</actionPeriod>
   <basePeriod>true</basePeriod>
-  <schedule>InformationRegister.ВКМ_ГрафикРаботы</schedule>
-  <scheduleValue>InformationRegister.ВКМ_ГрафикРаботы.Resource.Значение</scheduleValue>
-  <scheduleDate>InformationRegister.ВКМ_ГрафикРаботы.Dimension.Дата</scheduleDate>
-  <chartOfCalculationTypes>ChartOfCalculationTypes.ОсновныеНачисления</chartOfCalculationTypes>
+  <schedule>InformationRegister.ВКМ_ГрафикиРаботы</schedule>
+  <scheduleValue>InformationRegister.ВКМ_ГрафикиРаботы.Resource.Значение</scheduleValue>
+  <scheduleDate>InformationRegister.ВКМ_ГрафикиРаботы.Dimension.Дата</scheduleDate>
+  <chartOfCalculationTypes>ChartOfCalculationTypes.ВКМ_ОсновныеНачисления</chartOfCalculationTypes>
   <dataLockControlMode>Managed</dataLockControlMode>
   <resources uuid="b0f0c2b8-fe93-4cde-940c-9578ec74f5e3">
-    <name>Сумма</name>
+    <name>Результат</name>
     <synonym>
       <key>ru</key>
-      <value>Сумма</value>
+      <value>Результат</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -49,7 +49,7 @@
     <type>
       <types>Number</types>
       <numberQualifiers>
-        <precision>2</precision>
+        <precision>3</precision>
         <nonNegative>true</nonNegative>
       </numberQualifiers>
     </type>
@@ -57,11 +57,27 @@
     <maxValue xsi:type="core:UndefinedValue"/>
     <fullTextSearch>Use</fullTextSearch>
   </resources>
-  <attributes uuid="fe770234-55f9-49de-9618-a878e0cd94e1">
-    <name>Оклад</name>
+  <resources uuid="2553ce39-95c0-4e0d-8c90-699832d72edd">
+    <name>КалендарныеДни</name>
     <synonym>
       <key>ru</key>
-      <value>Оклад</value>
+      <value>Календарные дни</value>
+    </synonym>
+    <type>
+      <types>Number</types>
+      <numberQualifiers>
+        <precision>3</precision>
+      </numberQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+  </resources>
+  <attributes uuid="fe770234-55f9-49de-9618-a878e0cd94e1">
+    <name>Показатель</name>
+    <synonym>
+      <key>ru</key>
+      <value>Показатель</value>
     </synonym>
     <type>
       <types>Number</types>
@@ -75,16 +91,13 @@
     <fullTextSearch>Use</fullTextSearch>
   </attributes>
   <attributes uuid="5f8ace98-e72a-4597-879b-22e6ad4acb66">
-    <name>ПроцентПремии</name>
+    <name>График</name>
     <synonym>
       <key>ru</key>
-      <value>Процент премии</value>
+      <value>График</value>
     </synonym>
     <type>
-      <types>Number</types>
-      <numberQualifiers>
-        <precision>3</precision>
-      </numberQualifiers>
+      <types>CatalogRef.ВКМ_ГрафикиРаботы</types>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
@@ -97,7 +110,7 @@
       <value>Сотрудник</value>
     </synonym>
     <type>
-      <types>CatalogRef.Пользователи</types>
+      <types>CatalogRef.ВКМ_ФизическиеЛица</types>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>

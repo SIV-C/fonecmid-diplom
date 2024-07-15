@@ -9,10 +9,10 @@
     <recordType typeId="2cc92984-1df1-456a-b79a-48fe9b4b4516" valueTypeId="789c9d2c-0d10-4a0c-bf6b-6faae7e36f00"/>
     <recordManagerType typeId="164c8532-18d2-4c5d-b826-e600ff033bba" valueTypeId="d91b28ba-c9ec-4ace-8636-174b7f95858c"/>
   </producedTypes>
-  <name>ВКМ_ГрафикРаботы</name>
+  <name>ВКМ_ГрафикиРаботы</name>
   <synonym>
     <key>ru</key>
-    <value>График работы</value>
+    <value>Графики работы</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
   <editType>InDialog</editType>
@@ -47,6 +47,22 @@
       <dateQualifiers>
         <dateFractions>Date</dateFractions>
       </dateQualifiers>
+    </type>
+    <minValue xsi:type="core:UndefinedValue"/>
+    <maxValue xsi:type="core:UndefinedValue"/>
+    <fullTextSearch>Use</fullTextSearch>
+    <dataHistory>Use</dataHistory>
+    <fillValue xsi:type="core:UndefinedValue"/>
+    <mainFilter>true</mainFilter>
+  </dimensions>
+  <dimensions uuid="4d9ea012-36ad-4c14-8a95-b4da5ff34e25">
+    <name>ГрафикРаботы</name>
+    <synonym>
+      <key>ru</key>
+      <value>График работы</value>
+    </synonym>
+    <type>
+      <types>CatalogRef.ВКМ_ГрафикиРаботы</types>
     </type>
     <minValue xsi:type="core:UndefinedValue"/>
     <maxValue xsi:type="core:UndefinedValue"/>
