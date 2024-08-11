@@ -411,16 +411,11 @@
       <fullTextSearch>Use</fullTextSearch>
     </attributes>
   </tabularSections>
-  <templates uuid="4e1388b7-5bf9-47e0-8f70-d2a106e1072a">
-    <name>Печать</name>
+  <templates uuid="88c6d9a7-e723-4130-a6a3-cc35cc596c64">
+    <name>ПФ_DOC_АктОбОказанныхУслугах</name>
+    <synonym>
+      <key>ru</key>
+      <value>Акт об оказанных услугах</value>
+    </synonym>
   </templates>
-  <commands uuid="2bd5e0eb-3f57-458a-ae85-2f07c4571090">
-    <name>Печать</name>
-    <group>FormCommandBarImportant</group>
-    <commandParameterType>
-      <types>DocumentRef.РеализацияТоваровУслуг</types>
-    </commandParameterType>
-    <parameterUseMode>Multiple</parameterUseMode>
-    <representation>Auto</representation>
-  </commands>
 </mdclass:Document>

@@ -23,33 +23,45 @@
 			<field>Номенклатура</field>
 		</field>
 		<field xsi:type="DataSetFieldField">
-			<dataPath>СуммаРасход</dataPath>
-			<field>СуммаРасход</field>
+			<dataPath>СуммаКУплатеРасход</dataPath>
+			<field>СуммаКУплатеРасход</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сумма к уплате расход</v8:content>
+				</v8:item>
+			</title>
 		</field>
 		<dataSource>ИсточникДанных1</dataSource>
 		<query>ВЫБРАТЬ
-	ВКМ_ВыполненныеКлиентуРаботыОбороты.Клиент КАК Клиент,
-	ВКМ_ВыполненныеКлиентуРаботыОбороты.Договор КАК Договор,
-	ВКМ_ВыполненныеКлиентуРаботыОбороты.СуммаКОплатеРасход КАК СуммаКОплатеРасход
-ПОМЕСТИТЬ ВТ_Обслуживание
+	ВыполненныеКлиентуРаботыОбороты.Клиент КАК Клиент,
+	ВыполненныеКлиентуРаботыОбороты.Договор КАК Договор,
+	ВыполненныеКлиентуРаботыОбороты.СуммаКОплатеРасход КАК СуммаКОплатеРасход
+ПОМЕСТИТЬ втОбслуживание
 ИЗ
-	РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(&amp;НачалоПериода, &amp;КонецПериода, , ) КАК ВКМ_ВыполненныеКлиентуРаботыОбороты
+	РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(&amp;НачалоПериода, &amp;КонецПериода,,) КАК
+		ВыполненныеКлиентуРаботыОбороты
 ;
 
 ////////////////////////////////////////////////////////////////////////////////
 ВЫБРАТЬ
-	ВТ_Обслуживание.Клиент КАК Клиент,
-	ВТ_Обслуживание.Договор КАК Договор,
-	ВТ_Обслуживание.СуммаКОплатеРасход КАК СуммаКОплатеРасход,
-	ВКМ_ВыставленныеКОплатеРаботыОстаткиИОбороты.СуммаРасход КАК СуммаРасход
+	втОбслуживание.Клиент КАК Клиент,
+	втОбслуживание.Договор КАК Договор,
+	втОбслуживание.СуммаКОплатеРасход КАК СуммаКОплатеРасход,
+	ВыставленныеКОплатеРаботыОстаткиИОбороты.СуммаРасход КАК СуммаКУплатеРасход
 ИЗ
-	ВТ_Обслуживание КАК ВТ_Обслуживание
-		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыставленныеКОплатеРаботы.ОстаткиИОбороты(&amp;НачалоПериода, &amp;КонецПериода, , , ) КАК ВКМ_ВыставленныеКОплатеРаботыОстаткиИОбороты
-		ПО ВТ_Обслуживание.Клиент = ВКМ_ВыставленныеКОплатеРаботыОстаткиИОбороты.Клиент</query>
+	втОбслуживание КАК втОбслуживание
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыставленныеКОплатеРаботы.ОстаткиИОбороты(&amp;НачалоПериода,
+			&amp;КонецПериода,,,) КАК ВыставленныеКОплатеРаботыОстаткиИОбороты
+		ПО втОбслуживание.Клиент = ВыставленныеКОплатеРаботыОстаткиИОбороты.Клиент</query>
 	</dataSet>
 	<totalField>
 		<dataPath>СуммаКОплатеРасход</dataPath>
 		<expression>Сумма(СуммаКОплатеРасход)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаКУплатеРасход</dataPath>
+		<expression>Сумма(СуммаКУплатеРасход)</expression>
 	</totalField>
 	<parameter>
 		<name>НачалоПериода</name>
@@ -103,6 +115,14 @@
 		<dcsset:name>Основной</dcsset:name>
 		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>СуммаКОплатеРасход</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>СуммаКУплатеРасход</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
 			<dcsset:dataParameters>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
 					<dcscor:parameter>Период</dcscor:parameter>
@@ -110,13 +130,50 @@
 					<dcsset:userSettingID>f94ae69d-ce8b-4b78-a7df-da022f69f765</dcsset:userSettingID>
 				</dcscor:item>
 			</dcsset:dataParameters>
+			<dcsset:outputParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>РасположениеПолейГруппировки</dcscor:parameter>
+					<dcscor:value xsi:type="dcsset:DataCompositionGroupFieldsPlacement">SeparatelyAndInTotalsOnly</dcscor:value>
+				</dcscor:item>
+			</dcsset:outputParameters>
 			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Клиент</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+					</dcsset:item>
+				</dcsset:groupItems>
 				<dcsset:order>
 					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
 				</dcsset:order>
 				<dcsset:selection>
 					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
 				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Договор</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+					<dcsset:item xsi:type="dcsset:StructureItemGroup">
+						<dcsset:order>
+							<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+						</dcsset:order>
+						<dcsset:selection>
+							<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+						</dcsset:selection>
+					</dcsset:item>
+				</dcsset:item>
 			</dcsset:item>
 		</dcsset:settings>
 	</settingsVariant>
