@@ -14,6 +14,7 @@
     <value>Выставленные к оплате работы</value>
   </synonym>
   <useStandardCommands>true</useStandardCommands>
+  <registerType>Turnovers</registerType>
   <dataLockControlMode>Managed</dataLockControlMode>
   <enableTotalsSplitting>true</enableTotalsSplitting>
   <resources uuid="ec83dd30-ddc9-4a5c-9922-47c1538391a9">
