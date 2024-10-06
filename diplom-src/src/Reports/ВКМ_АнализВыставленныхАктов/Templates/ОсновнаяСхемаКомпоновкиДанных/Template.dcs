@@ -15,53 +15,81 @@
 			<field>Договор</field>
 		</field>
 		<field xsi:type="DataSetFieldField">
-			<dataPath>СуммаКОплатеРасход</dataPath>
-			<field>СуммаКОплатеРасход</field>
-		</field>
-		<field xsi:type="DataSetFieldField">
-			<dataPath>СуммаКУплатеРасход</dataPath>
-			<field>СуммаКУплатеРасход</field>
+			<dataPath>СуммаКОплате</dataPath>
+			<field>СуммаКОплате</field>
 			<title xsi:type="v8:LocalStringType">
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Сумма к уплате расход</v8:content>
+					<v8:content>Сумма к оплате</v8:content>
 				</v8:item>
 			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
-			<dataPath>Номенклатура</dataPath>
-			<field>Номенклатура</field>
+			<dataPath>СуммаВыполненныхРабот</dataPath>
+			<field>СуммаВыполненныхРабот</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сумма выполненных работ</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Контрагент</dataPath>
+			<field>Контрагент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Заказ</dataPath>
+			<field>Заказ</field>
 		</field>
 		<dataSource>ИсточникДанных1</dataSource>
 		<query>ВЫБРАТЬ
-	ВыполненныеКлиентуРаботыОбороты.Клиент КАК Клиент,
-	ВыполненныеКлиентуРаботыОбороты.Договор КАК Договор,
-	ВыполненныеКлиентуРаботыОбороты.СуммаКОплатеРасход КАК СуммаКОплатеРасход
-ПОМЕСТИТЬ втОбслуживание
+	ВКМ_ОбслуживаниеКлиента.Клиент КАК Клиент,
+	ВКМ_ОбслуживаниеКлиента.Договор КАК Договор
+ПОМЕСТИТЬ втКлиентыИДоговора
 ИЗ
-	РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(&amp;НачалоПериода, &amp;КонецПериода,,) КАК
-		ВыполненныеКлиентуРаботыОбороты
+	Документ.ВКМ_ОбслуживаниеКлиента КАК ВКМ_ОбслуживаниеКлиента
+ГДЕ
+	ВКМ_ОбслуживаниеКлиента.Дата = &amp;ДатаНачала
+	И ВКМ_ОбслуживаниеКлиента.Дата = &amp;ДатаОкончания
+	И ВКМ_ОбслуживаниеКлиента.Проведен
+СГРУППИРОВАТЬ ПО
+	ВКМ_ОбслуживаниеКлиента.Клиент,
+	ВКМ_ОбслуживаниеКлиента.Договор
 ;
 
 ////////////////////////////////////////////////////////////////////////////////
- ВЫБРАТЬ
-	втОбслуживание.Клиент КАК Клиент,
-	втОбслуживание.Договор КАК Договор,
-	втОбслуживание.СуммаКОплатеРасход КАК СуммаКОплатеРасход,
-	ВыставленныеКОплатеРаботыОстаткиИОбороты.СуммаОборот КАК СуммаКУплатеРасход
+ВЫБРАТЬ
+	втКлиентыИДоговора.Клиент КАК Клиент,
+	втКлиентыИДоговора.Договор КАК Договор,
+	ОбработкаЗаказовОбороты.СуммаОтгрузкиОборот КАК СуммаКОплате,
+	ВКМ_ВыполненныеКлиентуРаботыОбороты.СуммаКОплатеОборот КАК СуммаВыполненныхРабот
 ИЗ
-	втОбслуживание КАК втОбслуживание
-		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыставленныеКОплатеРаботы.Обороты(&amp;НачалоПериода, &amp;КонецПериода,,) КАК
-			ВыставленныеКОплатеРаботыОстаткиИОбороты
-		ПО втОбслуживание.Клиент = ВыставленныеКОплатеРаботыОстаткиИОбороты.Клиент</query>
+	втКлиентыИДоговора КАК втКлиентыИДоговора
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ОбработкаЗаказов.Обороты(,,, (Контрагент, Договор) В
+			(ВЫБРАТЬ
+				втКлиентыИДоговора.Клиент КАК Контрагент,
+				втКлиентыИДоговора.Договор КАК Договор
+			ИЗ
+				втКлиентыИДоговора КАК втКлиентыИДоговора)) КАК ОбработкаЗаказовОбороты
+		ПО (втКлиентыИДоговора.Клиент = ОбработкаЗаказовОбороты.Контрагент)
+		И (втКлиентыИДоговора.Договор = ОбработкаЗаказовОбороты.Договор)
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(,,, (Клиент, Договор) В
+			(ВЫБРАТЬ
+				втКлиентыИДоговора.Клиент КАК Клиент,
+				втКлиентыИДоговора.Договор КАК Договор
+			ИЗ
+				втКлиентыИДоговора КАК втКлиентыИДоговора)) КАК ВКМ_ВыполненныеКлиентуРаботыОбороты
+		ПО (втКлиентыИДоговора.Клиент = ВКМ_ВыполненныеКлиентуРаботыОбороты.Клиент)
+		И (втКлиентыИДоговора.Договор = ВКМ_ВыполненныеКлиентуРаботыОбороты.Договор)</query>
 	</dataSet>
 	<totalField>
-		<dataPath>СуммаКОплатеРасход</dataPath>
-		<expression>Сумма(СуммаКОплатеРасход)</expression>
+		<dataPath>СуммаВыполненныхРабот</dataPath>
+		<expression>Сумма(СуммаВыполненныхРабот)</expression>
 	</totalField>
 	<totalField>
-		<dataPath>СуммаКУплатеРасход</dataPath>
-		<expression>Сумма(СуммаКУплатеРасход)</expression>
+		<dataPath>СуммаКОплате</dataPath>
+		<expression>Сумма(СуммаКОплате)</expression>
 	</totalField>
 	<parameter>
 		<name>НачалоПериода</name>
@@ -111,22 +139,53 @@
 		<value xsi:nil="true"/>
 		<useRestriction>false</useRestriction>
 	</parameter>
+	<parameter>
+		<name>ДатаОкончания</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Дата окончания</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>ДатаНачала</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Дата начала</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<useRestriction>true</useRestriction>
+	</parameter>
 	<settingsVariant>
 		<dcsset:name>Основной</dcsset:name>
 		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
 			<dcsset:selection>
 				<dcsset:item xsi:type="dcsset:SelectedItemField">
-					<dcsset:field>СуммаКОплатеРасход</dcsset:field>
+					<dcsset:field>СуммаКОплате</dcsset:field>
 				</dcsset:item>
 				<dcsset:item xsi:type="dcsset:SelectedItemField">
-					<dcsset:field>СуммаКУплатеРасход</dcsset:field>
+					<dcsset:field>СуммаВыполненныхРабот</dcsset:field>
 				</dcsset:item>
 			</dcsset:selection>
 			<dcsset:dataParameters>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
 					<dcscor:parameter>Период</dcscor:parameter>
-					<dcscor:value xsi:nil="true"/>
 					<dcsset:userSettingID>f94ae69d-ce8b-4b78-a7df-da022f69f765</dcsset:userSettingID>
 				</dcscor:item>
 			</dcsset:dataParameters>
