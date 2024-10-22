@@ -49,8 +49,8 @@
 	ВКМ_ВыполненныеКлиентуРаботыОбороты.Клиент,
 	ВКМ_ВыполненныеКлиентуРаботыОбороты.Договор
 ИЗ
-	РегистрНакопления.ОбработкаЗаказов.Обороты(&amp;ДатаНачала, &amp;ДатаОкончания,,) КАК ОбработкаЗаказовОбороты
-		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(&amp;ДатаНачала, &amp;ДатаОкончания,,) КАК
+	РегистрНакопления.ОбработкаЗаказов.Обороты(&amp;НачалоПериода, &amp;КонецПериода,,) КАК ОбработкаЗаказовОбороты
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВКМ_ВыполненныеКлиентуРаботы.Обороты(&amp;НачалоПериода, &amp;КонецПериода,,) КАК
 			ВКМ_ВыполненныеКлиентуРаботыОбороты
 		ПО ОбработкаЗаказовОбороты.Контрагент = ВКМ_ВыполненныеКлиентуРаботыОбороты.Клиент
 		И ВКМ_ВыполненныеКлиентуРаботыОбороты.Договор = ОбработкаЗаказовОбороты.Договор</query>
@@ -110,38 +110,6 @@
 		</valueType>
 		<value xsi:nil="true"/>
 		<useRestriction>false</useRestriction>
-	</parameter>
-	<parameter>
-		<name>ДатаОкончания</name>
-		<title xsi:type="v8:LocalStringType">
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Дата окончания</v8:content>
-			</v8:item>
-		</title>
-		<valueType>
-			<v8:Type>xs:dateTime</v8:Type>
-			<v8:DateQualifiers>
-				<v8:DateFractions>DateTime</v8:DateFractions>
-			</v8:DateQualifiers>
-		</valueType>
-		<useRestriction>true</useRestriction>
-	</parameter>
-	<parameter>
-		<name>ДатаНачала</name>
-		<title xsi:type="v8:LocalStringType">
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Дата начала</v8:content>
-			</v8:item>
-		</title>
-		<valueType>
-			<v8:Type>xs:dateTime</v8:Type>
-			<v8:DateQualifiers>
-				<v8:DateFractions>DateTime</v8:DateFractions>
-			</v8:DateQualifiers>
-		</valueType>
-		<useRestriction>true</useRestriction>
 	</parameter>
 	<settingsVariant>
 		<dcsset:name>Основной</dcsset:name>
